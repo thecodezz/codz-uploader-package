@@ -3,7 +3,6 @@
 namespace Codz\Uploader;
 
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Facades\Blade;
 
 class CodzUploaderServiceProvider extends ServiceProvider
 {
@@ -20,16 +19,13 @@ class CodzUploaderServiceProvider extends ServiceProvider
             __DIR__.'/../public/styles.css' => public_path('vendor/codz-uploader/styles.css'),
         ], 'codz-uploader-assets');
 
-        // Publish the Blade component view
+        // Publish the Blade view component
         $this->publishes([
             __DIR__.'/../resources/views/components/uploader.blade.php' => resource_path('views/components/uploader.blade.php'),
-        ], 'codz-uploader-components');
+        ], 'codz-uploader-views');
 
         // Allow component use without publishing by loading views from the package
-        $this->loadViewsFrom(__DIR__.'/../resources/views/components', 'codz-uploader');
-
-        // Register the component with Laravel's component system
-        Blade::component('uploader', \Codz\Uploader\View\Components\Uploader::class);
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'codz-uploader');
     }
 
     /**
