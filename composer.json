@@ -1,5 +1,5 @@
 {
-  "name": "thecodezz/codz-uploader",
+  "name": "codz/uploader",
   "description": "A modern, flexible drag-and-drop file uploader component for Laravel",
   "type": "library",
   "keywords": ["laravel", "file-upload", "drag-drop", "component", "blade"],

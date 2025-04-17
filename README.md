@@ -31,7 +31,7 @@
 You can install the package via composer:
 
 ```bash
-composer require thecodezz/codz-uploader
+composer require codz/uploader
 ```
 
 Then publish the package assets and component:
