@@ -1,8 +1,17 @@
-# CODz File Uploader for Laravel
+<div align="center">
+  <div style="display: flex; align-items: center; justify-content: center;">
+    <img width="70" src="imgs/codz-logo.png" alt="CODz Uploader Logo">
+    <h1 style="margin-left: 10px;">CODz File Uploader for Laravel</h1>
+  </div>
 
-A modern, flexible drag-and-drop file uploader component for Laravel applications with built-in preview support and RTL language capabilities.
+  <p>
+    <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version">
+    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
+    <img src="https://img.shields.io/badge/author-Ahmed%20Ali-orange.svg" alt="Author">
+  </p>
 
-![CODz Uploader](https://via.placeholder.com/800x400?text=CODz+File+Uploader)
+  <h2>A modern, flexible drag-and-drop file uploader component for Laravel applications</h2>
+</div>
 
 ## Features
 
