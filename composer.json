@@ -1,0 +1,33 @@
+{
+  "name": "thecodezz/codz-uploader",
+  "description": "A modern, flexible drag-and-drop file uploader component for Laravel",
+  "type": "library",
+  "keywords": ["laravel", "file-upload", "drag-drop", "component", "blade"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ahmed Ali",
+      "email": "ahmedali19420@gmail.com",
+      "homepage": "https://github.com/thecodezz"
+    }
+  ],
+  "require": {
+    "php": ">=7.4",
+    "illuminate/support": "^6.0|^7.0|^8.0|^9.0|^10.0",
+    "illuminate/view": "^6.0|^7.0|^8.0|^9.0|^10.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Codz\\Uploader\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Codz\\Uploader\\CodzUploaderServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
