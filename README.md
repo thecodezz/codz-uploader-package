@@ -1,6 +1,6 @@
 <div align="center">
   <div style="display: flex; align-items: center; justify-content: center;">
-    <img width="70" src="imgs/codz-logo.png" alt="CODz Uploader Logo">
+    <img width="70" src="codz-logo.png" alt="CODz Uploader Logo">
     <h1 style="margin-left: 10px;">CODz File Uploader for Laravel</h1>
   </div>
 
