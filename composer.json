@@ -1,6 +1,7 @@
 {
   "name": "codz/uploader",
   "description": "A modern, flexible drag-and-drop file uploader component for Laravel",
+  "version": "1.0.0",
   "type": "library",
   "keywords": ["laravel", "file-upload", "drag-drop", "component", "blade"],
   "license": "MIT",
@@ -28,6 +29,6 @@
       ]
     }
   },
-  "minimum-stability": "stable",
+  "minimum-stability": "dev",
   "prefer-stable": true
 }
