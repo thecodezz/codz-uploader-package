@@ -10,6 +10,7 @@
     'files' => [],
     'deleteRouteName' => null,
     'deleteMethod' => 'GET',
+    'lang' => 'en',
 ])
 
 @php
@@ -52,6 +53,9 @@
         @if($hasFiles) 
         data-delete-method="{{ $deleteMethod }}"
         data-existing-files='{{ $existingFilesJson }}' 
+        @endif
+        @if($lang) 
+        data-lang="{{ $lang }}" 
         @endif
         >
     </div>

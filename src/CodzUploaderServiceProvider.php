@@ -2,6 +2,7 @@
 
 namespace Codz\Uploader;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
 class CodzUploaderServiceProvider extends ServiceProvider
@@ -11,21 +12,16 @@ class CodzUploaderServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
-        // Register package assets to be published
         $this->publishes([
             __DIR__.'/../public/scripts.js'  => public_path('vendor/codz-uploader/scripts.js'),
             __DIR__.'/../public/styles.css' => public_path('vendor/codz-uploader/styles.css'),
-        ], 'codz-uploader-assets');
+            __DIR__.'/../resources/views/components/uploader.blade.php' => resource_path('views/components/codz-uploader.blade.php'),
+        ], 'codz-uploader');
 
-        // Publish the Blade view component
-        $this->publishes([
-            __DIR__.'/../resources/views/components/uploader.blade.php' => resource_path('views/components/uploader.blade.php'),
-        ], 'codz-uploader-views');
-
-        // Allow component use without publishing by loading views from the package
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'codz-uploader');
+        Blade::component('codz-uploader::components.uploader', 'codz-uploader');
     }
 
     /**
@@ -33,7 +29,7 @@ class CodzUploaderServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         // No services to register currently
     }

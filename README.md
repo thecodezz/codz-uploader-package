@@ -1,175 +1,194 @@
-<div align="center">
-  <div style="display: flex; align-items: center; justify-content: center;">
-    <img width="70" src="https://raw.githubusercontent.com/thecodezz/codz-uploader/main/imgs/codz-logo.png" alt="CODz Uploader Logo">
-    <h1 style="margin-left: 10px;">Drag & Drop Uploader</h1>
-  </div>
+# CODz File Uploader for Laravel
 
-  <p></p>
-    <img src="https://img.shields.io/badge/version-1.0.0-blue.svg" alt="Version">
-    <img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License">
-    <img src="https://img.shields.io/badge/author-Ahmed%20Ali-orange.svg" alt="Author">
-  </p>
+A modern, flexible drag-and-drop file uploader component for Laravel applications with built-in preview support and RTL language capabilities.
 
-  <h2>A modern, flexible file upload component</h2>
-</div>
+![CODz Uploader](https://via.placeholder.com/800x400?text=CODz+File+Uploader)
 
 ## Features
 
-- 🖱️ **Drag & Drop Interface** - Intuitive drag and drop functionality
-- 📁 **Single & Multiple File Support** - Flexible upload configurations
-- 🖼️ **File Preview** - Visual previews for images and file type indicators
-- 📋 **File Type Validation** - Built-in validation for file types
-- 📏 **File Size Limits** - Customizable file size restrictions
-- 🔄 **Existing Files Management** - Manage and delete existing files
-- 🔍 **Responsive Design** - Fully responsive across all device sizes
-- 🎨 **Customizable UI** - Easy to customize appearance
-- ⚙️ **Framework Agnostic** - Works with any JavaScript framework
-- 🧩 **Blade Component** - Ready-to-use Laravel Blade component
+- ✅ Drag & drop file upload interface
+- ✅ Single or multiple file upload support
+- ✅ File type validation
+- ✅ File size limitation
+- ✅ Image preview for supported formats
+- ✅ File type icons for non-image files
+- ✅ Easy file deletion
+- ✅ Built-in RTL support (Arabic)
+- ✅ Fully styled and customizable
+- ✅ Works with Laravel forms
 
 ## Installation
 
-### Laravel Installation
-
-1. Install the package through Composer:
+You can install the package via composer:
 
 ```bash
 composer require thecodezz/codz-uploader
 ```
 
-2. Publish the package assets:
+Then publish the package assets and component:
 
 ```bash
-# Publish assets (CSS and JS)
-php artisan vendor:publish --tag=codz-uploader-assets
-
-# Publish the Blade view component
-php artisan vendor:publish --tag=codz-uploader-views
+php artisan vendor:publish --tag="codz-uploader"
 ```
 
-3. Include the assets in your layout:
+This will publish:
+- JavaScript and CSS assets to `public/vendor/codz-uploader/`
+- Blade component to `resources/views/components/codz-uploader.blade.php`
 
-```html
-<!-- In your head section -->
-<link rel="stylesheet" href="{{ asset('vendor/codz-uploader/styles.css') }}">
+## Basic Usage
 
-<!-- Before closing body tag -->
-<script src="{{ asset('vendor/codz-uploader/scripts.js') }}"></script>
+### Single File Upload
+
+```php
+<x-codz-uploader 
+    name="document"
+    label="Upload Document"
+    accept=".pdf,.docx"
+    maxSize="5120"
+/>
 ```
 
-### Manual Installation
+### Multiple File Upload
 
-1. Download the package files from the GitHub repository.
-
-2. Include the CSS in your `<head>`:
-
-```html
-<link rel="stylesheet" href="path/to/styles.css">
+```php
+<x-codz-uploader 
+    name="photos[]"
+    label="Upload Photos"
+    multiple="true"
+    accept=".jpg,.jpeg,.png"
+    maxSize="2048"
+/>
 ```
 
-3. Include the JavaScript before the closing `</body>`:
+### With Existing Files
 
-```html
-<script src="path/to/scripts.js"></script>
+```php
+<x-codz-uploader 
+    name="photos[]"
+    label="Photo Gallery"
+    multiple="true"
+    accept=".jpg,.png"
+    :files="[
+        1 => 'https://example.com/uploads/photo1.jpg',
+        2 => 'https://example.com/uploads/photo2.jpg'
+    ]"
+    deleteRouteName="photos.delete"
+/>
+```
+
+### With Arabic Language Support (RTL)
+
+```php
+<x-codz-uploader 
+    name="document"
+    label="تحميل المستند"
+    lang="ar"
+    accept=".pdf,.docx"
+    maxSize="5120"
+/>
+```
+
+### Using Inside a Laravel Form
+
+```php
+<form action="/upload" method="POST" enctype="multipart/form-data">
+    @csrf
+    
+    <div class="form-group">
+        <x-codz-uploader 
+            name="document"
+            label="Upload Document"
+            required="true"
+            accept=".pdf,.docx"
+            maxSize="5120"
+        />
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
 ```
 
 ## Configuration Options
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
-| `data-max-size` | Number | 5120 | Maximum file size in KB |
-| `data-accepted-types` | String | '' | Comma-separated list of accepted file types |
-| `data-single-mode` | Boolean | false | Whether to allow only a single file upload |
-| `data-existing-files` | JSON | [] | Array of existing files with ID and URL |
-| `data-delete-method` | String | 'GET' | HTTP method for delete requests |
-| `data-required` | Boolean | false | Whether file upload is required |
-| `data-name` | String | '' | Name attribute for form submission |
-| `data-lang` | String | 'en' | Language code ('en' or 'ar' supported) |
+| `name` | string | `'image'` | Input name attribute |
+| `label` | string | `'Browse Files'` | Upload component label |
+| `multiple` | boolean | `false` | Enable multiple file uploads |
+| `hasLabel` | boolean | `true` | Show/hide the label |
+| `required` | boolean | `false` | Make the file upload required |
+| `accept` | string | `'.png, .jpg, .jpeg'` | Allowed file types |
+| `maxSize` | string | `'500'` | Maximum file size in KB |
+| `files` | array/string | `[]` | Pre-populated files |
+| `deleteRouteName` | string | `null` | Route name for file deletion |
+| `deleteMethod` | string | `'GET'` | HTTP method for deletion (GET, POST, DELETE) |
+| `lang` | string | `'en'` | Language ('en' or 'ar' for Arabic) |
 
-## Usage
+## Alternative Usage Methods
 
-### Basic HTML Usage
-
-```html
-<div class="file-uploader" 
-     data-max-size="5120" 
-     data-accepted-types=".jpg,.png,.pdf"
-     data-single-mode="true"
-     data-name="document">
-</div>
-```
-
-### Laravel Blade Usage
+### Using Blade Component Directive
 
 ```php
-<!-- Using Blade Component Tag Syntax (Laravel 7+) -->
-<x-uploader
-    name="document"
-    label="Upload Document"
-    :multiple="false"
-    :required="true"
-    accept=".pdf,.docx"
-    maxSize="5120"
-    deleteRouteName="files.delete"
-/>
-
-<!-- Using Blade Component Directive -->
-@component('components.uploader', [
+@component('codz-uploader::components.uploader', [
     'name' => 'document',
     'label' => 'Upload Document',
     'multiple' => false,
     'required' => true,
     'accept' => '.pdf,.docx',
-    'maxSize' => '5120',
-    'deleteRouteName' => 'files.delete'
+    'maxSize' => '5120'
 ])
 @endcomponent
+```
 
-<!-- Using a Blade include -->
+### Using Blade Include
+
+```php
 @include('codz-uploader::components.uploader', [
     'name' => 'document',
     'label' => 'Upload Document',
     'multiple' => false,
     'required' => true,
     'accept' => '.pdf,.docx',
-    'maxSize' => '5120',
-    'deleteRouteName' => 'files.delete'
+    'maxSize' => '5120'
 ])
 ```
 
+## Supported File Types
 
-## Troubleshooting
+The uploader accepts file types based on MIME types or extensions:
 
-### Files Not Uploading
-- Make sure your form has `enctype="multipart/form-data"` attribute
+```php
+// For images
+accept=".jpg,.jpeg,.png,.gif,.webp"
 
-### Delete Function Not Working
-- Ensure proper CSRF token is available if using Laravel
-- Check that the delete URL is correctly configured
-- Verify server permissions for file deletion
+// For documents
+accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx"
 
-### Style Issues
-- Make sure the CSS file is correctly loaded
-- Check for CSS conflicts with your existing styles
-- Try using browser inspector to identify style overrides
+// For videos
+accept=".mp4,.webm,.mov,.avi"
 
-## Browser Support
-- Chrome (latest)
-- Firefox (latest)
+// Using MIME types
+accept="image/*,application/pdf"
 
-## Contributing
+// Multiple types
+accept="image/*,application/pdf,.docx"
+```
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+## Custom Styling
+
+The uploader comes with a pre-styled interface, but you can customize it by overriding CSS variables:
+
+```css
+:root {
+  --uploader-primary: #4a90e2;  /* Primary color */
+  --uploader-border: #dbe1e9;   /* Border color */
+  --uploader-text: #333333;     /* Text color */
+  --uploader-bg: #f9f9f9;       /* Background color */
+  --uploader-error: #e74c3c;    /* Error state color */
+  --uploader-success: #2ecc71;  /* Success state color */
+}
+```
 
 ## License
 
-MIT License
-
-## Author
-
-Created by [Ahmed Ali](https://github.com/thecodezz)
-
----
-
-<p align="center">
-  <sub>Made with ❤️ by Ahmed Ali</sub>
-</p>
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
