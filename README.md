@@ -44,6 +44,18 @@ This will publish:
 - JavaScript and CSS assets to `public/vendor/codz-uploader/`
 - Blade component to `resources/views/components/codz-uploader.blade.php`
 
+### Include Assets
+
+For proper functionality, make sure to include the CSS in your document `<head>` and the JavaScript file at the end of your `<body>`:
+
+```html
+<!-- In your layout's <head> section -->
+<link rel="stylesheet" href="{{ asset('vendor/codz-uploader/styles.css') }}">
+
+<!-- At the end of your <body> section -->
+<script src="{{ asset('vendor/codz-uploader/scripts.js') }}"></script>
+```
+
 ## Basic Usage
 
 ### Single File Upload
